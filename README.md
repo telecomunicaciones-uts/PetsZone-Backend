@@ -12,3 +12,13 @@
 <div align="center">
 <img src="img/bd.jpeg" alt="logo">
 </div>
+<br>
+<b>Projec Members</b><br>
+  <ul>
+  <li>Zarela Lizarazo</li>
+  <li>Andres Sinuco</li>
+<li>Diego Quintero</li>
+<li>Imanol Villamizar</li>
+  </ul>
+
+
