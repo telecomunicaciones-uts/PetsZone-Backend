@@ -57,4 +57,39 @@
 <li>Diego Quintero</li>
 <li>Imanol Villamizar</li>
   </ul><hr>
+<h2>Routes for GET Method</h2>
+
+<b>Obtain an invoice by ID:</b> <br>
+http://localhost:4000/facturas/:idFactura <br><br>
+This endpoint retrieves the details of a specific invoice identified by the idFactura parameter. The idFactura parameter is a placeholder for the unique identifier of the invoice you want to access. When you send a GET request to this URL with a specific idFactura, the server responds with the data corresponding to that invoice.
+
+<b>Parameters:</b>
+<ul>
+<li>idFactura (path parameter): The unique identifier of the invoice.</li>
+  </ul>
+<b>Response:</b>
+<ul>
+<li><b>200 OK:</b>Returns the invoice details if the idFactura is valid.</li>
+<li><b>404 Not Found:</b> Returns an error message if the idFactura does not exist.</li>
+</ul>
+
+<b>Saving path :</b> <br>
+http://localhost:4000/api/facturas/guardar/idPersona/:idPersona/fechaFactura/:fechaFactura/numeroResolucion/:numeroResolucion
+<br>
+       This endpoint is used to save a new invoice with specific details. It requires three path parameters:
+- **idPersona**: The unique identifier of the person associated with the invoice.
+- **fechaFactura**: The date of the invoice in a specified format.
+- **numeroResolucion**: The resolution number of the invoice.
+
+When a GET request is made to this URL with valid parameters, the server processes the data and saves the new invoice.
+
+## Parameters
+- **idPersona** (path parameter): The unique identifier of the person.
+- **fechaFactura** (path parameter): The date of the invoice (format should be specified, e.g., YYYY-MM-DD).
+- **numeroResolucion** (path parameter): The resolution number of the invoice.
+
+## Response
+- **200 OK**: Returns a confirmation that the invoice has been saved successfully.
+- **400 Bad Request**: Returns an error message if any of the parameters are invalid or missing.
+- **404 Not Found**: Returns an error message if the endpoint is incorrect or not found.
 
