@@ -94,4 +94,4 @@ When a GET request is made to this URL with valid parameters, the server process
 - **404 Not Found**: Returns an error message if the endpoint is incorrect or not found.
 
 # Video explaining API routes
-https://unidadestecno-my.sharepoint.com/:v:/g/personal/ivillamizarc_uts_edu_co/EaYjeZuSdgRHjb9uQ44wx2gB4IZoyPB_S39XP5BODxdZLQ?referrer=Teams.TEAMS-WEB&referrerScenario=MeetingChicletGetLink.view
+https://youtu.be/dmnA6LTj19Q
