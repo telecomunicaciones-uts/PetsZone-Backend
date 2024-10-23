@@ -95,3 +95,114 @@ When a GET request is made to this URL with valid parameters, the server process
 
 # Video explaining API routes
 https://youtu.be/dmnA6LTj19Q
+
+# Veterinary Management App - Frontend
+
+This repository contains the frontend code for a veterinary management system built using **React Native**. The app allows users to manage pets and invoices for a veterinary clinic and includes a secure login system that interacts with a backend API. Below is an overview of key sections of the app, including the login process, API communication, and the functionalities for managing pets and invoices.
+
+## 1. Login System
+
+### Overview
+The login functionality enables users to authenticate themselves by entering their email and password. Only authorized users can access the dashboard where they can manage pets and invoices.
+
+### How It Works
+- The login form collects the user’s email and password.
+- Upon clicking the "Login" button, the app sends a **POST** request to the backend API at the `login.php` endpoint.
+- The backend verifies the user credentials, and if valid, the app navigates the user to the **Dashboard** screen. If the credentials are incorrect, an error message is displayed.
+
+### Key Components
+- **Login Form**: Uses `Input` components from React Native Elements to capture the email and password.
+- **API Request**: The login details are sent to the backend using **Axios**, where the backend checks the credentials.
+- **Error Handling**: If the login attempt fails, an alert displays the appropriate error message.
+
+```javascript
+axios.post('http://<your-local-server-ip>/vetmascotas/login.php', { email, password })
+  .then(response => {
+    if (response.data.success) {
+      navigation.navigate('Dashboard');
+    } else {
+      Alert.alert('Login Failed', 'Invalid credentials');
+    }
+  })
+  .catch(error => {
+    Alert.alert('Error', 'Failed to connect to API');
+  });
+
+```
+## 2. API Integration
+
+### Overview
+The app consumes a custom backend API for all operations. The API is hosted on a local XAMPP server (or any other LAMP/WAMP server) and connects to a MySQL database where all the relevant data for pets, invoices, and users is stored.
+
+### API Endpoints
+- **Login API (`login.php`)**: Verifies user credentials.
+- **Create Invoice API (`crear_factura.php`)**: Allows users to create an invoice by sending relevant data (client, amount, description).
+- **Manage Pets API (`gestionar_mascotas.php`)**: Fetches pet details, allows adding new pets, and updates pet information.
+
+### Handling Requests
+For each operation (login, creating an invoice, managing pets), the app sends HTTP requests using Axios to interact with the backend, and updates the UI accordingly based on the response.
+
+---
+
+## 3. Invoice Management
+
+### Overview
+The app allows users to create and manage invoices directly from the dashboard.
+
+### How It Works
+- The **Create Invoice Screen** presents a form where users can enter client details, invoice amount, and description.
+- When the "Create Invoice" button is pressed, the app sends a POST request with the invoice data to the `crear_factura.php` API endpoint.
+- If the invoice is created successfully, the app clears the form and displays a success message.
+
+### Key Components
+- **Invoice Form**: Text inputs to capture client name, amount, and a description of the service.
+- **API Integration**: A POST request sends the form data to the backend.
+- **Success/Error Handling**: The app provides feedback based on the success of the request.
+ ```javascript 
+axios.post('http://<your-local-server-ip>/vetmascotas/crear_factura.php', {
+  cliente, monto, descripcion
+})
+.then(response => {
+  if (response.data.success) {
+    Alert.alert('Success', 'Invoice created');
+  } else {
+    Alert.alert('Error', 'Failed to create invoice');
+  }
+})
+.catch(error => {
+  Alert.alert('Error', 'API connection failed');
+}); ```
+
+## 4. Pet Management
+
+### Overview
+The app also includes a section for managing pet information. Users can view, add, and update pet details from the Dashboard.
+
+### How It Works
+- From the dashboard, users can navigate to the **Pet Management Screen**, where they can see a list of pets or add new pets to the system.
+- For adding or updating pet details, a form similar to the invoice form is used. The pet data is sent to the backend via an API request.
+
+### Key Components
+- **Pet List**: Displays a list of pets with details like name, breed, and owner.
+- **Pet Form**: Allows users to add or update pet information (e.g., name, breed, age, and owner).
+- **API Integration**: Communicates with the `gestionar_mascotas.php` endpoint to retrieve, add, or update pet data.
+
+---
+
+## 5. Dashboard
+
+### Overview
+The dashboard acts as the central hub for navigating between the different management sections of the app.
+
+### Key Sections
+- **Manage Pets**: Redirects to the Pet Management Screen.
+- **Manage Invoices**: Redirects to the Invoice Creation Screen.
+ ```javascript 
+<Button
+  title="Manage Pets"
+  onPress={() => navigation.navigate('ManagePetsScreen')}
+/>
+<Button
+  title="Create Invoice"
+  onPress={() => navigation.navigate('CreateInvoiceScreen')}
+/> ```
