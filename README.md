@@ -116,7 +116,7 @@ The login functionality enables users to authenticate themselves by entering the
 - **Error Handling**: If the login attempt fails, an alert displays the appropriate error message.
 
 ```javascript
-axios.post('http://<your-local-server-ip>/vetmascotas/login.php', { email, password })
+axios.post('http://localhost/vetmascotas/login.php', { email, password })
   .then(response => {
     if (response.data.success) {
       navigation.navigate('Dashboard');
@@ -159,7 +159,7 @@ The app allows users to create and manage invoices directly from the dashboard.
 - **API Integration**: A POST request sends the form data to the backend.
 - **Success/Error Handling**: The app provides feedback based on the success of the request.
  ```javascript 
-axios.post('http://<your-local-server-ip>/vetmascotas/crear_factura.php', {
+axios.post('http://localhost/vetmascotas/crear_factura.php', {
   cliente, monto, descripcion
 })
 .then(response => {
@@ -171,7 +171,9 @@ axios.post('http://<your-local-server-ip>/vetmascotas/crear_factura.php', {
 })
 .catch(error => {
   Alert.alert('Error', 'API connection failed');
-}); ```
+});
+
+ ```
 
 ## 4. Pet Management
 
@@ -205,4 +207,9 @@ The dashboard acts as the central hub for navigating between the different manag
 <Button
   title="Create Invoice"
   onPress={() => navigation.navigate('CreateInvoiceScreen')}
-/> ```
+/>
+
+```
+
+# Video explaining App - Frontend
+https://youtu.be/7JZ5aCowQ6E?si=Ho-TF49gWHu0r4g-
